@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SimpleGlobal } from 'ng2-simple-global';
 import { Router} from '@angular/router';
+import * as globals from './globals';
 
 @Component({
   selector: 'app-root',
@@ -8,19 +9,31 @@ import { Router} from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title:string;
-
-  constructor(private globals : SimpleGlobal ,private _router: Router ){
-
+  private title:string;
+ 
+  constructor(private _router: Router ){
+    
+  }
+  hideLogout(){
+ if(globals.AuthenticatedUser.length == 0) 
+      return true;
+ else return false;
   }
   ngOnInit(){
-    if(this.globals['isAuthenticated']){
-      this.title = 'app works!';
-  }
-  else{
-    this._router.navigate(["signIn"]);
-  }
+   
+    if(localStorage.getItem("currentUser") !== null){
+        this.title = 'app works!';
+        this._router.navigate(["home"]);
+    }
+    else{
+      this._router.navigate(["signIn"]);
+    }
 
+  }
+   logout() {
+    localStorage.removeItem("currentUser");
+    globals.AuthenticatedUser.length == 0;
+    this._router.navigate(['signIn']);
   }
   }
   

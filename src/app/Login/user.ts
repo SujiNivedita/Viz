@@ -1,8 +1,10 @@
-export class User{
-	constructor(
-	public username:string,
-	public password:string)
-	{
+export interface IUser {
 
-	}
+	userId: number;
+    name: string;
+    email: string;
+    geolocation: string;
+    phone: number;
+
 }
+	

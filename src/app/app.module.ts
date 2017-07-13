@@ -8,13 +8,34 @@ import { SimpleGlobal } from 'ng2-simple-global';
 import { Routes, RouterModule } from '@angular/router';
 import {LoginComponent} from "./Login/login.component";
 import { AppComponent } from './app.component';
+import { carouselComponent } from './carousel';
+import { HomeComponent } from './Home/home.component';
+import { DndComponent } from './dnd/dnd.component';
+import { RegisterComponent } from './Register/register.component';
+import {UploadComponent} from "./Home/Upload/upload.component";
+import {PrintComponent} from "./Home/Print/print.component";
+import {FilesComponent} from "./Home/Files/files.component";
+
+
+import { DndDirective } from './dnd/dnd.directive';
+
+import { LoginService } from './Login/login.service';
+import { FilesService } from './Home/Files/files.service'
 
 import {routing} from './app.routes';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    carouselComponent,
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent,
+    UploadComponent,
+    FilesComponent,
+    PrintComponent,
+    DndComponent,
+    DndDirective,
   ],
   imports: [
     BrowserModule,
@@ -23,7 +44,7 @@ import {routing} from './app.routes';
     routing
     // AlertModule.forRoot()
   ],
-  providers: [SimpleGlobal],
+  providers: [SimpleGlobal,LoginService,FilesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
